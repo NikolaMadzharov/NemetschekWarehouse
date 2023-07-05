@@ -1,0 +1,67 @@
+﻿@model NemetschekWarehouse.Core.Models.Product.PagedProductViewModel
+
+@{
+    ViewData["Title"] = "All Films";
+}
+
+<h1>All products</h1>
+
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+            @foreach (var film in Model.ProductS)
+            {
+                <tr>
+                    <td>@film.Name</td>
+                    <td>@film.Type</td>
+                    <td>@film.Price</td>
+                    <td>@film.Quantity</td>
+                    <td><img src="@film.ImageUrl"/></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if (Model.PageIndex > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("All", new { page = Model.PageIndex - 1 })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            }
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("All", new { page = i })">@i</a>
+                </li>
+            }
+
+            @if (Model.PageIndex < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("All", new { page = Model.PageIndex + 1})" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<style>
+    .film-image {
+        max-width: 100px;
+        height: auto;
+    }
+</style>
+

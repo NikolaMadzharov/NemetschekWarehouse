@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NemetschekWarehouse.Infrastructure.data;
 
@@ -11,9 +12,11 @@ using NemetschekWarehouse.Infrastructure.data;
 namespace NemetschekWarehouse.web.Data.Migrations
 {
     [DbContext(typeof(WarehouseDb))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230705200448_Created_New_IdentityUser")]
+    partial class Created_New_IdentityUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,23 +209,6 @@ namespace NemetschekWarehouse.web.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Types");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Candy"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Fizzy Drinks"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Sour"
-                        });
                 });
 
             modelBuilder.Entity("NemetschekWarehouse.Infrastructure.Data.Entities.User.Guest", b =>

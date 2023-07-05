@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NemetschekWarehouse.Core.Contracts;
+using NemetschekWarehouse.Core.Services;
 using NemetschekWarehouse.Infrastructure.data;
 using NemetschekWarehouse.Infrastructure.Data.Entities.User;
 
@@ -21,7 +23,7 @@ builder.Services.AddDefaultIdentity<Guest>(
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<WarehouseDb>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<IProduct, ProductService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
